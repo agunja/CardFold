@@ -15,6 +15,7 @@
 		C832392115DA317700B29169 /* CFTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C832392015DA317700B29169 /* CFTAppDelegate.m */; };
 		C832392415DA317700B29169 /* CFTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C832392315DA317700B29169 /* CFTViewController.m */; };
 		C832392715DA317700B29169 /* CFTViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C832392515DA317700B29169 /* CFTViewController.xib */; };
+		C832392E15DA321300B29169 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C832392D15DA321300B29169 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		C832392215DA317700B29169 /* CFTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFTViewController.h; sourceTree = "<group>"; };
 		C832392315DA317700B29169 /* CFTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CFTViewController.m; sourceTree = "<group>"; };
 		C832392615DA317700B29169 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CFTViewController.xib; sourceTree = "<group>"; };
+		C832392D15DA321300B29169 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C832392E15DA321300B29169 /* QuartzCore.framework in Frameworks */,
 				C832391115DA317700B29169 /* UIKit.framework in Frameworks */,
 				C832391315DA317700B29169 /* Foundation.framework in Frameworks */,
 				C832391515DA317700B29169 /* CoreGraphics.framework in Frameworks */,
@@ -67,6 +70,7 @@
 		C832390F15DA317600B29169 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C832392D15DA321300B29169 /* QuartzCore.framework */,
 				C832391015DA317600B29169 /* UIKit.framework */,
 				C832391215DA317700B29169 /* Foundation.framework */,
 				C832391415DA317700B29169 /* CoreGraphics.framework */,
