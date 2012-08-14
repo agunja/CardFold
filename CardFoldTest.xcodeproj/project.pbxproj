@@ -1,0 +1,289 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C832391115DA317700B29169 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C832391015DA317600B29169 /* UIKit.framework */; };
+		C832391315DA317700B29169 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C832391215DA317700B29169 /* Foundation.framework */; };
+		C832391515DA317700B29169 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C832391415DA317700B29169 /* CoreGraphics.framework */; };
+		C832391B15DA317700B29169 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C832391915DA317700B29169 /* InfoPlist.strings */; };
+		C832391D15DA317700B29169 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C832391C15DA317700B29169 /* main.m */; };
+		C832392115DA317700B29169 /* CFTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C832392015DA317700B29169 /* CFTAppDelegate.m */; };
+		C832392415DA317700B29169 /* CFTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C832392315DA317700B29169 /* CFTViewController.m */; };
+		C832392715DA317700B29169 /* CFTViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C832392515DA317700B29169 /* CFTViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		C832390C15DA317600B29169 /* CardFoldTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardFoldTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C832391015DA317600B29169 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C832391215DA317700B29169 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C832391415DA317700B29169 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C832391815DA317700B29169 /* CardFoldTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CardFoldTest-Info.plist"; sourceTree = "<group>"; };
+		C832391A15DA317700B29169 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C832391C15DA317700B29169 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C832391E15DA317700B29169 /* CardFoldTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CardFoldTest-Prefix.pch"; sourceTree = "<group>"; };
+		C832391F15DA317700B29169 /* CFTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFTAppDelegate.h; sourceTree = "<group>"; };
+		C832392015DA317700B29169 /* CFTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CFTAppDelegate.m; sourceTree = "<group>"; };
+		C832392215DA317700B29169 /* CFTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CFTViewController.h; sourceTree = "<group>"; };
+		C832392315DA317700B29169 /* CFTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CFTViewController.m; sourceTree = "<group>"; };
+		C832392615DA317700B29169 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CFTViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C832390915DA317600B29169 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C832391115DA317700B29169 /* UIKit.framework in Frameworks */,
+				C832391315DA317700B29169 /* Foundation.framework in Frameworks */,
+				C832391515DA317700B29169 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C832390115DA317600B29169 = {
+			isa = PBXGroup;
+			children = (
+				C832391615DA317700B29169 /* CardFoldTest */,
+				C832390F15DA317600B29169 /* Frameworks */,
+				C832390D15DA317600B29169 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C832390D15DA317600B29169 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C832390C15DA317600B29169 /* CardFoldTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C832390F15DA317600B29169 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C832391015DA317600B29169 /* UIKit.framework */,
+				C832391215DA317700B29169 /* Foundation.framework */,
+				C832391415DA317700B29169 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C832391615DA317700B29169 /* CardFoldTest */ = {
+			isa = PBXGroup;
+			children = (
+				C832391F15DA317700B29169 /* CFTAppDelegate.h */,
+				C832392015DA317700B29169 /* CFTAppDelegate.m */,
+				C832392215DA317700B29169 /* CFTViewController.h */,
+				C832392315DA317700B29169 /* CFTViewController.m */,
+				C832392515DA317700B29169 /* CFTViewController.xib */,
+				C832391715DA317700B29169 /* Supporting Files */,
+			);
+			path = CardFoldTest;
+			sourceTree = "<group>";
+		};
+		C832391715DA317700B29169 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C832391815DA317700B29169 /* CardFoldTest-Info.plist */,
+				C832391915DA317700B29169 /* InfoPlist.strings */,
+				C832391C15DA317700B29169 /* main.m */,
+				C832391E15DA317700B29169 /* CardFoldTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C832390B15DA317600B29169 /* CardFoldTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C832392A15DA317700B29169 /* Build configuration list for PBXNativeTarget "CardFoldTest" */;
+			buildPhases = (
+				C832390815DA317600B29169 /* Sources */,
+				C832390915DA317600B29169 /* Frameworks */,
+				C832390A15DA317600B29169 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CardFoldTest;
+			productName = CardFoldTest;
+			productReference = C832390C15DA317600B29169 /* CardFoldTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C832390315DA317600B29169 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CFT;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Aqeel Gunja";
+			};
+			buildConfigurationList = C832390615DA317600B29169 /* Build configuration list for PBXProject "CardFoldTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C832390115DA317600B29169;
+			productRefGroup = C832390D15DA317600B29169 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C832390B15DA317600B29169 /* CardFoldTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C832390A15DA317600B29169 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C832391B15DA317700B29169 /* InfoPlist.strings in Resources */,
+				C832392715DA317700B29169 /* CFTViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C832390815DA317600B29169 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C832391D15DA317700B29169 /* main.m in Sources */,
+				C832392115DA317700B29169 /* CFTAppDelegate.m in Sources */,
+				C832392415DA317700B29169 /* CFTViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C832391915DA317700B29169 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C832391A15DA317700B29169 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C832392515DA317700B29169 /* CFTViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C832392615DA317700B29169 /* en */,
+			);
+			name = CFTViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C832392815DA317700B29169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		C832392915DA317700B29169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C832392B15DA317700B29169 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CardFoldTest/CardFoldTest-Prefix.pch";
+				INFOPLIST_FILE = "CardFoldTest/CardFoldTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C832392C15DA317700B29169 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CardFoldTest/CardFoldTest-Prefix.pch";
+				INFOPLIST_FILE = "CardFoldTest/CardFoldTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C832390615DA317600B29169 /* Build configuration list for PBXProject "CardFoldTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C832392815DA317700B29169 /* Debug */,
+				C832392915DA317700B29169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C832392A15DA317700B29169 /* Build configuration list for PBXNativeTarget "CardFoldTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C832392B15DA317700B29169 /* Debug */,
+				C832392C15DA317700B29169 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C832390315DA317600B29169 /* Project object */;
+}
