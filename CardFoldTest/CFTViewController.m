@@ -56,7 +56,7 @@
     CGRect layerBounds = CGRectMake(0, 0, 200, 600);
     
     self.baseLayer = [CATransformLayer layer];
-    self.baseLayer.bounds = bounds;
+    self.baseLayer.bounds = layerBounds;
     self.baseLayer.anchorPoint = CGPointZero;
     self.baseLayer.position = CGPointMake(200, 400);
 //    self.baseLayer.borderWidth = 1.0;
@@ -75,6 +75,15 @@
     leftLayer.position = CGPointZero;
     self.leftLayer = leftLayer;
     [self.baseLayer addSublayer:leftLayer];
+    
+//    CALayer *leftBackLayer = [CALayer layer];
+//    leftBackLayer.backgroundColor = [UIColor yellowColor].CGColor;
+//    leftBackLayer.frame = layerBounds;
+//    leftBackLayer.position = CGPointZero;
+//    leftBackLayer.anchorPoint = CGPointMake(1.0,0.5);
+//    leftBackLayer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+//    leftBackLayer.doubleSided = YES;
+//    [self.leftLayer addSublayer:leftBackLayer];
     
     CATransformLayer *middleBaseLayer = [CATransformLayer layer];
     middleBaseLayer.bounds = layerBounds;
@@ -107,6 +116,7 @@
 	initialTransform.m34 = 1.0 / -1200;
 	self.baseLayer.sublayerTransform = initialTransform;
     [self.baseLayer insertSublayer:leftLayer above:middleBaseLayer];
+    [self.middleBaseLayer insertSublayer:rightLayer above:middleLayer];
 }
 
 - (void)viewDidUnload
@@ -175,19 +185,26 @@
 //		purpleLayer.transform = CATransform3DMakeRotation(M_PI_2, 1, 0, 0);
 //		magentaLayer.transform = CATransform3DMakeRotation(0.8*-M_PI_2, 0, 1, 0);
         
-        self.middleBaseLayer.transform = CATransform3DMakeRotation(M_PI / 1.00001, 0, 1, 0);        
-        self.rightLayer.transform = CATransform3DMakeRotation(-M_PI/1.00001, 0, 1, 0);
+        self.middleBaseLayer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+        self.rightLayer.transform = CATransform3DMakeRotation(-M_PI, 0, 1, 0);
         
-        CABasicAnimation *transformAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+        CAKeyframeAnimation *transformAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
         transformAnimation.duration = 2.0;
-        transformAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        transformAnimation.toValue = [NSValue valueWithCATransform3D:self.middleBaseLayer.transform];
+//        transformAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+
+        CATransform3D midTransform = CATransform3DMakeRotation(M_PI_2, 0, 1, 0);
+        transformAnimation.values = @[ [NSValue valueWithCATransform3D:CATransform3DIdentity], [NSValue valueWithCATransform3D:midTransform], [NSValue valueWithCATransform3D:self.middleBaseLayer.transform]];
+        
+//        transformAnimation.toValue = [NSValue valueWithCATransform3D:self.middleBaseLayer.transform];
         [self.middleBaseLayer addAnimation:transformAnimation forKey:@"transform"];
         
-        CABasicAnimation *rightAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+        CAKeyframeAnimation *rightAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
         rightAnimation.duration = 1.5;
-        rightAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        rightAnimation.toValue = [NSValue valueWithCATransform3D:self.rightLayer.transform];
+//        rightAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+        
+        midTransform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
+ 
+//        rightAnimation.toValue = [NSValue valueWithCATransform3D:self.rightLayer.transform];
         [self.rightLayer addAnimation:rightAnimation forKey:@"transform"];
 	}
 	else
