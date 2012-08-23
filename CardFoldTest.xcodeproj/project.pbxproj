@@ -16,6 +16,8 @@
 		C832392415DA317700B29169 /* CFTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C832392315DA317700B29169 /* CFTViewController.m */; };
 		C832392715DA317700B29169 /* CFTViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C832392515DA317700B29169 /* CFTViewController.xib */; };
 		C832392E15DA321300B29169 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C832392D15DA321300B29169 /* QuartzCore.framework */; };
+		C8A71DC315E6EEC700557939 /* ABPPamphletView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A71DC215E6EEC700557939 /* ABPPamphletView.m */; };
+		C8A71DC715E6EF9300557939 /* ABPTransformView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A71DC615E6EF9300557939 /* ABPTransformView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,10 @@
 		C832392315DA317700B29169 /* CFTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CFTViewController.m; sourceTree = "<group>"; };
 		C832392615DA317700B29169 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CFTViewController.xib; sourceTree = "<group>"; };
 		C832392D15DA321300B29169 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C8A71DC115E6EEC700557939 /* ABPPamphletView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPPamphletView.h; sourceTree = "<group>"; };
+		C8A71DC215E6EEC700557939 /* ABPPamphletView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPPamphletView.m; sourceTree = "<group>"; };
+		C8A71DC515E6EF9300557939 /* ABPTransformView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABPTransformView.h; sourceTree = "<group>"; };
+		C8A71DC615E6EF9300557939 /* ABPTransformView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABPTransformView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,10 @@
 		C832391615DA317700B29169 /* CardFoldTest */ = {
 			isa = PBXGroup;
 			children = (
+				C8A71DC515E6EF9300557939 /* ABPTransformView.h */,
+				C8A71DC615E6EF9300557939 /* ABPTransformView.m */,
+				C8A71DC115E6EEC700557939 /* ABPPamphletView.h */,
+				C8A71DC215E6EEC700557939 /* ABPPamphletView.m */,
 				C832391F15DA317700B29169 /* CFTAppDelegate.h */,
 				C832392015DA317700B29169 /* CFTAppDelegate.m */,
 				C832392215DA317700B29169 /* CFTViewController.h */,
@@ -169,6 +179,8 @@
 				C832391D15DA317700B29169 /* main.m in Sources */,
 				C832392115DA317700B29169 /* CFTAppDelegate.m in Sources */,
 				C832392415DA317700B29169 /* CFTViewController.m in Sources */,
+				C8A71DC315E6EEC700557939 /* ABPPamphletView.m in Sources */,
+				C8A71DC715E6EF9300557939 /* ABPTransformView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +298,7 @@
 				C832392C15DA317700B29169 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
