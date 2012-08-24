@@ -165,6 +165,9 @@
 {
     CGRect frame = CGRectMake(0, 0, 200, 600);
     UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(100, 100, 60, 30);
+    [leftView addSubview:button];
     leftView.backgroundColor = [UIColor blueColor];
     UIView *middleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 600)];
     middleView.backgroundColor = [UIColor redColor];
@@ -273,7 +276,7 @@
 //		yellowLayer.transform = CATransform3DMakeRotation(-M_PI_2, 1, 0, 0);
 //		purpleLayer.transform = CATransform3DMakeRotation(M_PI_2, 1, 0, 0);
 //		magentaLayer.transform = CATransform3DMakeRotation(0.8*-M_PI_2, 0, 1, 0);
-        
+
         self.middleBaseLayer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
         self.rightLayer.transform = CATransform3DMakeRotation(-M_PI, 0, 1, 0);
         
@@ -300,6 +303,7 @@
 	{
         self.middleBaseLayer.transform = CATransform3DIdentity;
         self.rightLayer.transform = CATransform3DIdentity;
+        self.baseLayer.transform = CATransform3DIdentity;    
 	}
 }
 
