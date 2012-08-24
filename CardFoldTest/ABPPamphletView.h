@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class ABPTransformView;
+
 @interface ABPPamphletView : UIView
 
 @property (nonatomic, strong) UIView *leftView;
 @property (nonatomic, strong) UIView *middleView;
 @property (nonatomic, strong) UIView *rightView;
+
+@property (nonatomic, strong) ABPTransformView *middleBaseView;
 
 @property (nonatomic, assign, getter=isOpen) BOOL open;
 

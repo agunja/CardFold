@@ -10,9 +10,12 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "ABPPamphletView.h"
+#import "ABPTransformView.h"
+
 @interface CFTViewController ()
 
-@property (nonatomic, strong) CATransformLayer *baseLayer;
+@property (nonatomic, strong) CALayer *baseLayer;
 @property (nonatomic, strong) CATransformLayer *middleBaseLayer;
 
 @property (nonatomic, strong) CALayer *leftLayer;
@@ -36,6 +39,154 @@
     return self;
 }
 
+- (void)createPamphletLayer
+{
+    CGRect bounds = self.view.bounds;
+    
+    CGRect layerBounds = CGRectMake(0, 0, 200, 600);
+    
+    UIView *baseView = [[ABPTransformView alloc] initWithFrame:layerBounds];
+    self.baseLayer = baseView.layer;//[CATransformLayer layer];
+    self.baseLayer.bounds = layerBounds;
+    self.baseLayer.anchorPoint = CGPointZero;
+    self.baseLayer.position = CGPointMake(200, 400);
+    //    self.baseLayer.borderWidth = 1.0;
+    //    self.baseLayer.borderColor = [UIColor purpleColor].CGColor;
+    [self.view.layer addSublayer:self.baseLayer];
+    
+    CALayer *squareLayer = [CALayer layer];
+    squareLayer.frame = CGRectMake(0, 0, 100, 100);
+    squareLayer.zPosition = 100.0;
+    squareLayer.backgroundColor = [UIColor orangeColor].CGColor;
+    [self.baseLayer addSublayer:squareLayer];
+    
+    UIView *leftView = [[UIView alloc] initWithFrame:layerBounds];
+    CALayer *leftLayer = leftView.layer;//[CALayer layer];
+    leftLayer.backgroundColor = [UIColor redColor].CGColor;
+    leftLayer.frame = layerBounds;
+    leftLayer.position = CGPointZero;
+    self.leftLayer = leftLayer;
+    [self.baseLayer addSublayer:leftLayer];
+    
+    //    CALayer *leftBackLayer = [CALayer layer];
+    //    leftBackLayer.backgroundColor = [UIColor yellowColor].CGColor;
+    //    leftBackLayer.frame = layerBounds;
+    //    leftBackLayer.position = CGPointZero;
+    //    leftBackLayer.anchorPoint = CGPointMake(1.0,0.5);
+    //    leftBackLayer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+    //    leftBackLayer.doubleSided = YES;
+    //    [self.leftLayer addSublayer:leftBackLayer];
+    
+    ABPTransformView *middleBaseView = [[ABPTransformView alloc] initWithFrame:layerBounds];
+    CATransformLayer *middleBaseLayer = (CATransformLayer *)middleBaseView.layer;//[CATransformLayer layer];
+    middleBaseLayer.bounds = layerBounds;
+    middleBaseLayer.anchorPoint = CGPointMake(0.0, 0.5);
+    middleBaseLayer.position = CGPointMake(100, 0);
+    //    middleBaseLayer.borderWidth = 1.0;
+    //    middleBaseLayer.borderColor = [UIColor orangeColor].CGColor;
+    self.middleBaseLayer = middleBaseLayer;
+    [self.baseLayer addSublayer:middleBaseLayer];
+    
+    UIView *middleView = [[UIView alloc] initWithFrame:layerBounds];
+    CALayer *middleLayer = middleView.layer;//[CATextLayer layer];
+    middleLayer.backgroundColor = [UIColor blueColor].CGColor;
+    middleLayer.frame = layerBounds;
+    middleLayer.anchorPoint = CGPointZero;
+    middleLayer.position = CGPointZero;
+    self.middleLayer = middleLayer;
+//    middleLayer.string = @"1";
+//    middleLayer.fontSize = 36.0;
+    [self.middleBaseLayer addSublayer:middleLayer];
+    
+    UIView *rightView = [[UIView alloc] initWithFrame:layerBounds];
+    CALayer *rightLayer = rightView.layer;//[CALayer layer];
+    rightLayer.backgroundColor = [UIColor greenColor].CGColor;
+    rightLayer.frame = layerBounds;
+    rightLayer.anchorPoint = CGPointMake(0.0, 0.5);
+    rightLayer.position = CGPointMake(200, 300);
+    self.rightLayer = rightLayer;
+    [self.middleBaseLayer addSublayer:rightLayer];
+    
+	CATransform3D initialTransform = self.baseLayer.sublayerTransform;
+	initialTransform.m34 = 1.0 / -1200;
+	self.baseLayer.sublayerTransform = initialTransform;
+    [self.baseLayer insertSublayer:leftLayer above:middleBaseLayer];
+    [self.middleBaseLayer insertSublayer:rightLayer above:middleLayer];
+}
+
+- (void)logicalPamphletLayer
+{
+    CGRect baseLayerBounds = CGRectMake(0, 0, 600, 600);
+    CGRect layerFrame = CGRectMake(0, 0, 200, 600);
+    
+    CATransformLayer *baseLayer = [CATransformLayer layer];
+    baseLayer.bounds = baseLayerBounds;
+    CGRect baseFrame = {
+        .origin = CGPointMake(200, 200),
+        .size = baseLayerBounds.size
+    };
+    baseLayer.frame = baseFrame;
+    self.baseLayer = baseLayer;
+    [self.view.layer addSublayer:self.baseLayer];
+    
+    CALayer *leftLayer = [CALayer layer];
+    leftLayer.frame = layerFrame;
+    leftLayer.backgroundColor = [UIColor blueColor].CGColor;
+    self.leftLayer = leftLayer;
+    [self.baseLayer addSublayer:leftLayer];
+    
+    CATransformLayer *middleBaseLayer = [CATransformLayer layer];
+    middleBaseLayer.anchorPoint = CGPointMake(0.0, 0.5);
+    middleBaseLayer.frame = CGRectMake(200, 0, 400, 600);    
+    self.middleBaseLayer = middleBaseLayer;
+    [self.baseLayer addSublayer:middleBaseLayer];
+    
+    CALayer *middleLayer = [CALayer layer];
+    middleLayer.frame = CGRectMake(0, 0, 200, 600);
+    middleLayer.backgroundColor = [UIColor redColor].CGColor;
+    self.middleLayer = middleLayer;
+    [self.middleBaseLayer addSublayer:middleLayer];
+    
+    CALayer *rightLayer = [CALayer layer];
+    rightLayer.anchorPoint = CGPointMake(0.0, 0.5);    
+    rightLayer.frame = CGRectMake(200, 0, 200, 600);
+    rightLayer.backgroundColor = [UIColor greenColor].CGColor;
+    self.rightLayer = rightLayer;
+    [self.middleBaseLayer addSublayer:rightLayer];
+    
+	CATransform3D initialTransform = self.baseLayer.sublayerTransform;
+	initialTransform.m34 = 1.0 / -1200;
+	self.baseLayer.sublayerTransform = initialTransform;
+    [self.baseLayer insertSublayer:leftLayer above:middleBaseLayer];
+    [self.middleBaseLayer insertSublayer:rightLayer above:middleLayer];
+}
+
+- (void)setupPamphletView
+{
+    CGRect frame = CGRectMake(0, 0, 200, 600);
+    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
+    leftView.backgroundColor = [UIColor blueColor];
+    UIView *middleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
+    middleView.backgroundColor = [UIColor redColor];
+    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
+    rightView.backgroundColor = [UIColor greenColor];
+    
+    ABPPamphletView *pamphletView = [[ABPPamphletView alloc] init];
+    pamphletView.frame = CGRectMake(300, 300, 200, 600);
+    pamphletView.leftView = leftView;
+    pamphletView.middleView = middleView;
+    pamphletView.rightView = rightView;
+    
+    [self.view addSubview:pamphletView];
+    [pamphletView layoutIfNeeded];
+    
+    self.baseLayer = pamphletView.layer;
+    self.leftLayer = leftView.layer;
+    self.middleBaseLayer = (CATransformLayer *)pamphletView.middleBaseView.layer;
+    self.middleLayer = middleView.layer;
+    self.rightLayer = rightView.layer;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -51,72 +202,9 @@
     
 	self.view.backgroundColor = [UIColor blackColor];    
     
-    CGRect bounds = self.view.bounds;
-    
-    CGRect layerBounds = CGRectMake(0, 0, 200, 600);
-    
-    self.baseLayer = [CATransformLayer layer];
-    self.baseLayer.bounds = layerBounds;
-    self.baseLayer.anchorPoint = CGPointZero;
-    self.baseLayer.position = CGPointMake(200, 400);
-//    self.baseLayer.borderWidth = 1.0;
-//    self.baseLayer.borderColor = [UIColor purpleColor].CGColor;
-    [self.view.layer addSublayer:self.baseLayer];
-    
-    CALayer *squareLayer = [CALayer layer];
-    squareLayer.frame = CGRectMake(0, 0, 100, 100);
-    squareLayer.zPosition = 100.0;
-    squareLayer.backgroundColor = [UIColor orangeColor].CGColor;
-    [self.baseLayer addSublayer:squareLayer];
-    
-    CALayer *leftLayer = [CALayer layer];
-    leftLayer.backgroundColor = [UIColor redColor].CGColor;
-    leftLayer.frame = layerBounds;
-    leftLayer.position = CGPointZero;
-    self.leftLayer = leftLayer;
-    [self.baseLayer addSublayer:leftLayer];
-    
-//    CALayer *leftBackLayer = [CALayer layer];
-//    leftBackLayer.backgroundColor = [UIColor yellowColor].CGColor;
-//    leftBackLayer.frame = layerBounds;
-//    leftBackLayer.position = CGPointZero;
-//    leftBackLayer.anchorPoint = CGPointMake(1.0,0.5);
-//    leftBackLayer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
-//    leftBackLayer.doubleSided = YES;
-//    [self.leftLayer addSublayer:leftBackLayer];
-    
-    CATransformLayer *middleBaseLayer = [CATransformLayer layer];
-    middleBaseLayer.bounds = layerBounds;
-    middleBaseLayer.anchorPoint = CGPointMake(0.0, 0.5);
-    middleBaseLayer.position = CGPointMake(100, 0);
-//    middleBaseLayer.borderWidth = 1.0;
-//    middleBaseLayer.borderColor = [UIColor orangeColor].CGColor;
-    self.middleBaseLayer = middleBaseLayer;
-    [self.baseLayer addSublayer:middleBaseLayer];
-    
-    CATextLayer *middleLayer = [CATextLayer layer];
-    middleLayer.backgroundColor = [UIColor blueColor].CGColor;
-    middleLayer.frame = layerBounds;
-    middleLayer.anchorPoint = CGPointZero;
-    middleLayer.position = CGPointZero;
-    self.middleLayer = middleLayer;
-    middleLayer.string = @"1";
-    middleLayer.fontSize = 36.0;
-    [self.middleBaseLayer addSublayer:middleLayer];
-    
-    CALayer *rightLayer = [CALayer layer];
-    rightLayer.backgroundColor = [UIColor greenColor].CGColor;
-    rightLayer.frame = layerBounds;
-    rightLayer.anchorPoint = CGPointMake(0.0, 0.5);
-    rightLayer.position = CGPointMake(200, 300);
-    self.rightLayer = rightLayer;
-    [self.middleBaseLayer addSublayer:rightLayer];
-    
-	CATransform3D initialTransform = self.baseLayer.sublayerTransform;
-	initialTransform.m34 = 1.0 / -1200;
-	self.baseLayer.sublayerTransform = initialTransform;
-    [self.baseLayer insertSublayer:leftLayer above:middleBaseLayer];
-    [self.middleBaseLayer insertSublayer:rightLayer above:middleLayer];
+    [self logicalPamphletLayer];
+    //[self createPamphletLayer];
+    //[self setupPamphletView];
 }
 
 - (void)viewDidUnload
