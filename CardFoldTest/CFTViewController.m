@@ -22,6 +22,8 @@
 @property (nonatomic, strong) CALayer *middleLayer;
 @property (nonatomic, strong) CALayer *rightLayer;
 
+@property (nonatomic, strong) ABPPamphletView *pamphletView;
+
 @end
 
 @implementation CFTViewController
@@ -181,6 +183,7 @@
     [pamphletView sizeToFit];
     pamphletView.center = CGPointMake(1024/2, 768/2);
     //[pamphletView layoutIfNeeded];
+    self.pamphletView = pamphletView;
     
     [self.view addSubview:pamphletView];
     
@@ -267,44 +270,45 @@
 
 - (void)tap:(UITapGestureRecognizer *)gesture
 {
-	isThreeDee = !isThreeDee;
-	
-	if (isThreeDee)
-	{
-//		greenLayer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
-//		blueLayer.transform = CATransform3DMakeRotation(M_PI_2, 0, 1, 0);
-//		yellowLayer.transform = CATransform3DMakeRotation(-M_PI_2, 1, 0, 0);
-//		purpleLayer.transform = CATransform3DMakeRotation(M_PI_2, 1, 0, 0);
-//		magentaLayer.transform = CATransform3DMakeRotation(0.8*-M_PI_2, 0, 1, 0);
-
-        self.middleBaseLayer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
-        self.rightLayer.transform = CATransform3DMakeRotation(-M_PI, 0, 1, 0);
-        
-        CAKeyframeAnimation *transformAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
-        transformAnimation.duration = 2.0;
-//        transformAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-
-        CATransform3D midTransform = CATransform3DMakeRotation(M_PI_2, 0, 1, 0);
-        transformAnimation.values = @[ [NSValue valueWithCATransform3D:CATransform3DIdentity], [NSValue valueWithCATransform3D:midTransform], [NSValue valueWithCATransform3D:self.middleBaseLayer.transform]];
-        
-//        transformAnimation.toValue = [NSValue valueWithCATransform3D:self.middleBaseLayer.transform];
-        [self.middleBaseLayer addAnimation:transformAnimation forKey:@"transform"];
-        
-        CAKeyframeAnimation *rightAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
-        rightAnimation.duration = 1.5;
-//        rightAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
-        
-        midTransform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
- 
-//        rightAnimation.toValue = [NSValue valueWithCATransform3D:self.rightLayer.transform];
-        [self.rightLayer addAnimation:rightAnimation forKey:@"transform"];
-	}
-	else
-	{
-        self.middleBaseLayer.transform = CATransform3DIdentity;
-        self.rightLayer.transform = CATransform3DIdentity;
-        self.baseLayer.transform = CATransform3DIdentity;    
-	}
+    [self.pamphletView setOpen:![self.pamphletView isOpen]];
+//	isThreeDee = !isThreeDee;
+//	
+//	if (isThreeDee)
+//	{
+////		greenLayer.transform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
+////		blueLayer.transform = CATransform3DMakeRotation(M_PI_2, 0, 1, 0);
+////		yellowLayer.transform = CATransform3DMakeRotation(-M_PI_2, 1, 0, 0);
+////		purpleLayer.transform = CATransform3DMakeRotation(M_PI_2, 1, 0, 0);
+////		magentaLayer.transform = CATransform3DMakeRotation(0.8*-M_PI_2, 0, 1, 0);
+//
+//        self.middleBaseLayer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+//        self.rightLayer.transform = CATransform3DMakeRotation(-M_PI, 0, 1, 0);
+//        
+//        CAKeyframeAnimation *transformAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+//        transformAnimation.duration = 2.0;
+////        transformAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+//
+//        CATransform3D midTransform = CATransform3DMakeRotation(M_PI_2, 0, 1, 0);
+//        transformAnimation.values = @[ [NSValue valueWithCATransform3D:CATransform3DIdentity], [NSValue valueWithCATransform3D:midTransform], [NSValue valueWithCATransform3D:self.middleBaseLayer.transform]];
+//        
+////        transformAnimation.toValue = [NSValue valueWithCATransform3D:self.middleBaseLayer.transform];
+//        [self.middleBaseLayer addAnimation:transformAnimation forKey:@"transform"];
+//        
+//        CAKeyframeAnimation *rightAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
+//        rightAnimation.duration = 1.5;
+////        rightAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+//        
+//        midTransform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
+// 
+////        rightAnimation.toValue = [NSValue valueWithCATransform3D:self.rightLayer.transform];
+//        [self.rightLayer addAnimation:rightAnimation forKey:@"transform"];
+//	}
+//	else
+//	{
+//        self.middleBaseLayer.transform = CATransform3DIdentity;
+//        self.rightLayer.transform = CATransform3DIdentity;
+//        self.baseLayer.transform = CATransform3DIdentity;    
+//	}
 }
 
 - (void)updateTransformsWithProgress:(CGFloat)progress
