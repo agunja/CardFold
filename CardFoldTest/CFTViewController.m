@@ -12,6 +12,7 @@
 
 #import "ABPPamphletView.h"
 #import "ABPTransformView.h"
+#import "CFTDoubleSidedView.h"
 
 @interface CFTViewController ()
 
@@ -163,18 +164,40 @@
     [self.middleBaseLayer insertSublayer:rightLayer above:middleLayer];
 }
 
+- (UIView *)generalBackView
+{
+    UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
+    backView.backgroundColor = [UIColor yellowColor];
+    return backView;
+}
+
 - (void)setupPamphletView
 {
-    CGRect frame = CGRectMake(0, 0, 200, 600);
-    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
+    UIView *leftFrontView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
+    
+    CFTDoubleSidedView *leftView = [[CFTDoubleSidedView alloc] init];
+    leftView.frontView = leftFrontView;
+    leftView.backView = [self generalBackView];
+    [leftView sizeToFit];
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.frame = CGRectMake(100, 100, 60, 30);
-    [leftView addSubview:button];
-    leftView.backgroundColor = [UIColor blueColor];
-    UIView *middleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
-    middleView.backgroundColor = [UIColor redColor];
-    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
-    rightView.backgroundColor = [UIColor greenColor];
+    [leftFrontView addSubview:button];
+    leftFrontView.backgroundColor = [UIColor blueColor];
+    
+    UIView *middleFrontView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
+    middleFrontView.backgroundColor = [UIColor redColor];
+    CFTDoubleSidedView *middleView = [[CFTDoubleSidedView alloc] init];
+    middleView.frontView = middleFrontView;
+    middleView.backView = [self generalBackView];
+    [middleView sizeToFit];
+  
+    UIView *rightFrontView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
+    rightFrontView.backgroundColor = [UIColor greenColor];
+    CFTDoubleSidedView *rightView = [[CFTDoubleSidedView alloc] init];
+    rightView.frontView = rightFrontView;
+    rightView.backView = [self generalBackView];
+    [rightView sizeToFit];
     
     ABPPamphletView *pamphletView = [[ABPPamphletView alloc] init];
     pamphletView.leftView = leftView;
