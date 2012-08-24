@@ -119,10 +119,10 @@
     CGRect baseLayerBounds = CGRectMake(0, 0, 600, 600);
     CGRect layerFrame = CGRectMake(0, 0, 200, 600);
     
-    CATransformLayer *baseLayer = [CATransformLayer layer];
+    CALayer *baseLayer = [CALayer layer];
     baseLayer.bounds = baseLayerBounds;
     CGRect baseFrame = {
-        .origin = CGPointMake(200, 200),
+        .origin = CGPointMake(100, 100),
         .size = baseLayerBounds.size
     };
     baseLayer.frame = baseFrame;
@@ -166,19 +166,20 @@
     CGRect frame = CGRectMake(0, 0, 200, 600);
     UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
     leftView.backgroundColor = [UIColor blueColor];
-    UIView *middleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
+    UIView *middleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 600)];
     middleView.backgroundColor = [UIColor redColor];
-    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
+    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 600)];
     rightView.backgroundColor = [UIColor greenColor];
     
     ABPPamphletView *pamphletView = [[ABPPamphletView alloc] init];
-    pamphletView.frame = CGRectMake(300, 300, 200, 600);
     pamphletView.leftView = leftView;
     pamphletView.middleView = middleView;
     pamphletView.rightView = rightView;
+    [pamphletView sizeToFit];
+    pamphletView.center = CGPointMake(1024/2, 768/2);
+    //[pamphletView layoutIfNeeded];
     
     [self.view addSubview:pamphletView];
-    [pamphletView layoutIfNeeded];
     
     self.baseLayer = pamphletView.layer;
     self.leftLayer = leftView.layer;
@@ -202,9 +203,9 @@
     
 	self.view.backgroundColor = [UIColor blackColor];    
     
-    [self logicalPamphletLayer];
+    //[self logicalPamphletLayer];
     //[self createPamphletLayer];
-    //[self setupPamphletView];
+    [self setupPamphletView];
 }
 
 - (void)viewDidUnload

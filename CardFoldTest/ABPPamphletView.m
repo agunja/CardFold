@@ -43,8 +43,6 @@
 {
     [_leftView removeFromSuperview];
     _leftView = leftView;
-    CALayer *leftLayer = _leftView.layer;
-    leftLayer.position = CGPointZero;
     [self addSubview:_leftView];
 }
 
@@ -52,9 +50,6 @@
 {
     [_middleView removeFromSuperview];
     _middleView = middleView;
-    CALayer *middleLayer = _middleView.layer;
-    middleLayer.anchorPoint = CGPointZero;
-    middleLayer.position = CGPointZero;
     [self.middleBaseView addSubview:_middleView];
 }
 
@@ -67,23 +62,40 @@
     [self.middleBaseView addSubview:_rightView];
 }
 
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    CGRect leftBounds = self.leftView.bounds;
+    CGRect middleBounds = self.middleView.bounds;
+    CGRect rightBounds = self.rightView.bounds;
+    CGFloat width = leftBounds.size.width + middleBounds.size.width + rightBounds.size.width;
+    CGFloat height = MAX(leftBounds.size.height, middleBounds.size.height);
+    height = MAX(height, rightBounds.size.height);
+    
+    return CGSizeMake(width, height);
+}
+
 - (void)layoutSubviews
 {
-    CGRect selfBounds = [self bounds];
-
-    //Layout middle base view
-    UIView *middleBaseView = [self middleBaseView];
-    CGRect middleBaseViewBounds = middleBaseView.bounds;
-    middleBaseView.frame = selfBounds;
-    middleBaseView.layer.position = CGPointMake(self.layer.bounds.size.width * 0.5, 0);
-
-    //Layout middle view
-    UIView *rightView = [self rightView];
-    rightView.layer.position = CGPointMake(middleBaseViewBounds.size.width, middleBaseViewBounds.size.height / 2);
-
-    [self bringSubviewToFront:self.leftView];
-    [self sendSubviewToBack:self.middleBaseView];
-    [self.middleBaseView bringSubviewToFront:self.rightView];
+    CGRect bounds = self.bounds;
+    CGRect leftFrame = self.leftView.frame;
+    CGRect middleFrame = self.middleView.frame;
+    CGRect rightFrame = self.rightView.frame;
+    
+    UIView *leftView = self.leftView;
+    UIView *middleView = self.middleView;
+    UIView *rightView = self.rightView;
+    
+    leftFrame.origin = CGPointZero;
+    leftView.frame = leftFrame;
+    
+    UIView *middleBaseView = self.middleBaseView;
+    middleBaseView.frame = CGRectMake(leftFrame.size.width, 0, middleFrame.size.width + rightFrame.size.width, bounds.size.height);
+    
+    middleFrame.origin = CGPointZero;
+    middleView.frame = middleFrame;
+    
+    rightFrame.origin = CGPointMake(middleFrame.size.width, 0);
+    rightView.frame = rightFrame;
 }
 
 @end
