@@ -71,11 +71,12 @@
 {
     if (_open != open)
     {
+        [CATransaction begin];
         if (open)
         {
             // Rotate middle base layer
             CALayer *middleBaseLayer = self.middleBaseView.layer;
-            CATransform3D oldTransform = middleBaseLayer.transform;
+            CATransform3D oldTransform = [(CALayer *)(middleBaseLayer.presentationLayer) transform];
             middleBaseLayer.transform = CATransform3DIdentity;
             CAKeyframeAnimation *transformAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
             transformAnimation.duration = 2.0;
@@ -87,7 +88,7 @@
             
             // Rotate right layer
             CALayer *rightLayer = self.rightView.layer;
-            oldTransform = rightLayer.transform;
+            oldTransform = [(CALayer *)rightLayer.presentationLayer transform];
             rightLayer.transform = CATransform3DIdentity;
             CAKeyframeAnimation *rightAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
             rightAnimation.duration = 2.0;
@@ -100,39 +101,51 @@
         else
         {
             CALayer *middleBaseLayer = self.middleBaseView.layer;
+            CATransform3D oldTransform = [(CALayer *)(middleBaseLayer.presentationLayer) transform];      
             middleBaseLayer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
             CAKeyframeAnimation *transformAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
             transformAnimation.duration = 2.0;
             
             CATransform3D midTransform = CATransform3DMakeRotation(M_PI_2, 0, 1, 0);
-            transformAnimation.values = @[ [NSValue valueWithCATransform3D:CATransform3DIdentity], [NSValue valueWithCATransform3D:midTransform], [NSValue valueWithCATransform3D:middleBaseLayer.transform]];
+            transformAnimation.values = @[ [NSValue valueWithCATransform3D:oldTransform], [NSValue valueWithCATransform3D:midTransform], [NSValue valueWithCATransform3D:middleBaseLayer.transform]];
             
             [middleBaseLayer addAnimation:transformAnimation forKey:@"transform"];
             
             
             CALayer *rightLayer = self.rightView.layer;
+            oldTransform = [(CALayer *)rightLayer.presentationLayer transform];          
             rightLayer.transform = CATransform3DMakeRotation(-M_PI, 0, 1, 0);
             CAKeyframeAnimation *rightAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
             rightAnimation.duration = 2.0;
             
             midTransform = CATransform3DMakeRotation(-M_PI_2, 0, 1, 0);
-            rightAnimation.values = @[ [NSValue valueWithCATransform3D:CATransform3DIdentity], [NSValue valueWithCATransform3D:midTransform], [NSValue valueWithCATransform3D:rightLayer.transform]];
+            rightAnimation.values = @[ [NSValue valueWithCATransform3D:oldTransform], [NSValue valueWithCATransform3D:midTransform], [NSValue valueWithCATransform3D:rightLayer.transform]];
             
             [rightLayer addAnimation:rightAnimation forKey:@"transform"];
         }
         
         _open = open;
+        [CATransaction commit];
     }
 }
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-    CGRect leftBounds = self.leftView.bounds;
-    CGRect middleBounds = self.middleView.bounds;
-    CGRect rightBounds = self.rightView.bounds;
-    CGFloat width = leftBounds.size.width + middleBounds.size.width + rightBounds.size.width;
-    CGFloat height = MAX(leftBounds.size.height, middleBounds.size.height);
-    height = MAX(height, rightBounds.size.height);
+    CGFloat width, height;
+    CGRect leftBounds = self.leftView.bounds;    
+    if (self.open)
+    {
+        CGRect middleBounds = self.middleView.bounds;
+        CGRect rightBounds = self.rightView.bounds;
+        width = leftBounds.size.width + middleBounds.size.width + rightBounds.size.width;
+        height = MAX(leftBounds.size.height, middleBounds.size.height);
+        height = MAX(height, rightBounds.size.height);
+    }
+    else
+    {
+        width = leftBounds.size.width;
+        height = leftBounds.size.height;
+    }
     
     return CGSizeMake(width, height);
 }

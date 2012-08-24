@@ -171,9 +171,9 @@
     button.frame = CGRectMake(100, 100, 60, 30);
     [leftView addSubview:button];
     leftView.backgroundColor = [UIColor blueColor];
-    UIView *middleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 600)];
+    UIView *middleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
     middleView.backgroundColor = [UIColor redColor];
-    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 600)];
+    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
     rightView.backgroundColor = [UIColor greenColor];
     
     ABPPamphletView *pamphletView = [[ABPPamphletView alloc] init];
@@ -271,6 +271,7 @@
 - (void)tap:(UITapGestureRecognizer *)gesture
 {
     [self.pamphletView setOpen:![self.pamphletView isOpen]];
+    //[self.pamphletView sizeToFit];
 //	isThreeDee = !isThreeDee;
 //	
 //	if (isThreeDee)
