@@ -180,10 +180,12 @@
     leftView.backView = [self generalBackView];
     [leftView sizeToFit];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(100, 100, 60, 30);
-    [leftFrontView addSubview:button];
+//    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    button.frame = CGRectMake(100, 100, 60, 30);
+//    [leftFrontView addSubview:button];
     leftFrontView.backgroundColor = [UIColor blueColor];
+    UISlider *slider = [[UISlider alloc] initWithFrame:CGRectMake(100, 100, 100, 30)];
+    [leftFrontView addSubview:slider];
     
     UIView *middleFrontView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
     middleFrontView.backgroundColor = [UIColor redColor];
@@ -191,6 +193,8 @@
     middleView.frontView = middleFrontView;
     middleView.backView = [self generalBackView];
     [middleView sizeToFit];
+    UISlider *middleSlider = [[UISlider alloc] initWithFrame:CGRectMake(100, 100, 100, 30)];
+    [middleFrontView addSubview:middleSlider];
   
     UIView *rightFrontView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
     rightFrontView.backgroundColor = [UIColor greenColor];
