@@ -197,7 +197,7 @@
     [middleFrontView addSubview:middleSlider];
   
     UIView *rightFrontView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 600)];
-    rightFrontView.backgroundColor = [UIColor greenColor];
+    rightFrontView.backgroundColor = [UIColor redColor];
     CFTDoubleSidedView *rightView = [[CFTDoubleSidedView alloc] init];
     rightView.frontView = rightFrontView;
     rightView.backView = [self generalBackView];

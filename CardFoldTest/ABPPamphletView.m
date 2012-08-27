@@ -14,6 +14,7 @@
 @interface ABPPamphletView ()
 
 @property (nonatomic, strong) CAGradientLayer *middleGradientLayer;
+@property (nonatomic, strong) CALayer *rightShadowLayer;
 
 @end
 
@@ -34,7 +35,7 @@
         [self addSubview:_middleBaseView];
         
         CATransform3D initialTransform = self.layer.sublayerTransform;
-        initialTransform.m34 = -1.0 / 1200;
+        initialTransform.m34 = -1.0 / 800;
         self.layer.sublayerTransform = initialTransform;
         
         _open = NO;
@@ -46,6 +47,9 @@
         UIColor *leftColor = [UIColor blackColor];
         UIColor *rightColor = [UIColor blackColor];
         _middleGradientLayer.colors = @[ (id)leftColor.CGColor, (id)rightColor.CGColor];
+        
+        _rightShadowLayer = [CALayer layer];
+        _rightShadowLayer.backgroundColor = [UIColor blackColor].CGColor;
     }
     return self;
 }
@@ -83,6 +87,16 @@
     [self.middleBaseView addSubview:_rightView];
 
     rightLayer.transform = CATransform3DMakeRotation(-M_PI, 0, 1, 0);
+    
+    if ([rightView isKindOfClass:[CFTDoubleSidedView class]])
+    {
+        CFTDoubleSidedView *doubleRightView = (CFTDoubleSidedView *)rightView;
+        [doubleRightView.frontView.layer addSublayer:self.rightShadowLayer];
+    }
+    else
+    {
+        [_rightView.layer addSublayer:self.rightShadowLayer];
+    }
 }
 
 - (NSArray *)colorsForOpen:(BOOL)open
@@ -95,8 +109,8 @@
     }
     else
     {
-        leftColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.9].CGColor;
-        rightColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.9].CGColor;
+        leftColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75].CGColor;
+        rightColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75].CGColor;
     }
     return @[ (__bridge id)leftColor, (__bridge id)rightColor ];
 }
@@ -116,6 +130,29 @@
     gradientAnimation.duration = duration;
     gradientAnimation.values = @[ oldColors, midColors, newColors ];
     [self.middleGradientLayer addAnimation:gradientAnimation forKey:@"colors"];
+}
+
+- (CGFloat)opacityForOpen:(BOOL)open
+{
+    if (open) {
+        return 0.0;
+    }
+    else
+    {
+        return 0.5;
+    }
+}
+
+- (void)animateRightShadowToOpen:(BOOL)open withDuration:(CGFloat)duration
+{
+    CGFloat newOpacity = [self opacityForOpen:open];
+    CGFloat oldOpacity = [(CALayer *)self.rightShadowLayer.presentationLayer opacity];
+    
+    self.rightShadowLayer.opacity = newOpacity;
+    CAKeyframeAnimation *rightShadowAnimation = [CAKeyframeAnimation animationWithKeyPath:@"opacity"];
+    rightShadowAnimation.duration = duration;
+    rightShadowAnimation.values = @[ @(oldOpacity), @(newOpacity) ];
+    [self.rightShadowLayer addAnimation:rightShadowAnimation forKey:@"opacity"];
 }
 
 - (void)setOpen:(BOOL)open
@@ -150,6 +187,7 @@
             rightAnimation.values = @[ [NSValue valueWithCATransform3D:oldTransform], [NSValue valueWithCATransform3D:midTransform], [NSValue valueWithCATransform3D:rightLayer.transform]];
             
             [rightLayer addAnimation:rightAnimation forKey:@"transform"];
+            [self animateRightShadowToOpen:open withDuration:duration];            
         }
         else
         {
@@ -165,7 +203,7 @@
             transformAnimation.values = @[ [NSValue valueWithCATransform3D:oldTransform], [NSValue valueWithCATransform3D:midTransform], [NSValue valueWithCATransform3D:middleBaseLayer.transform]];
             
             [middleBaseLayer addAnimation:transformAnimation forKey:@"transform"];
-            [self animateGradientToOpen:open withDuration:duration];            
+            [self animateGradientToOpen:open withDuration:duration];          
             
             CALayer *rightLayer = self.rightView.layer;
             oldTransform = [(CALayer *)rightLayer.presentationLayer transform];          
@@ -177,6 +215,7 @@
             rightAnimation.values = @[ [NSValue valueWithCATransform3D:oldTransform], [NSValue valueWithCATransform3D:midTransform], [NSValue valueWithCATransform3D:rightLayer.transform]];
             
             [rightLayer addAnimation:rightAnimation forKey:@"transform"];
+            [self animateRightShadowToOpen:open withDuration:duration];              
         }
         
         _open = open;
@@ -230,6 +269,7 @@
     
     rightFrame.origin = CGPointMake(middleFrame.size.width, 0);
     rightView.frame = rightFrame;
+    self.rightShadowLayer.frame = rightView.bounds;
 }
 
 @end
