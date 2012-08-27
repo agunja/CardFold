@@ -104,15 +104,16 @@
     CGColorRef leftColor;
     CGColorRef rightColor;
     if (open) {
-        leftColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0].CGColor;
-        rightColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0].CGColor;
+        leftColor = CGColorRetain([UIColor colorWithRed:0 green:0 blue:0 alpha:0].CGColor);
+        rightColor = CGColorRetain([UIColor colorWithRed:0 green:0 blue:0 alpha:0].CGColor);
     }
     else
     {
-        leftColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75].CGColor;
-        rightColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.75].CGColor;
+        leftColor = CGColorRetain([UIColor colorWithRed:0 green:0 blue:0 alpha:0.75].CGColor);
+        rightColor = CGColorRetain([UIColor colorWithRed:0 green:0 blue:0 alpha:0.75].CGColor);
     }
-    return @[ (__bridge id)leftColor, (__bridge id)rightColor ];
+    NSArray *colors = @[ (__bridge_transfer id)leftColor, (__bridge_transfer id)rightColor ];
+    return colors;
 }
 
 - (void)animateGradientToOpen:(BOOL)open withDuration:(CGFloat)duration
